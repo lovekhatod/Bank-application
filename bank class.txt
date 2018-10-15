@@ -1,0 +1,46 @@
+import java.util.LinkedList;
+
+public class IciciBank {
+	
+	LinkedList <Account> accounts = new LinkedList<>();
+	
+	public String CreateAccount(int AccountNumber, int Amount) throws InsufficientOpeneningBalanceException
+	{
+		Account account = new Account(AccountNumber, Amount);
+		accounts.add(account);
+		if (Amount <500)
+		{
+			throw new InsufficientOpeneningBalanceException() ;
+		}
+	
+		return "account created successfully";
+		
+	}
+	
+	
+	private Account searchaccount (int AccountNumber)throws InvalidAccountNumberException
+	{
+		for (Account account : accounts)
+			
+			if(account.getAccountNumber() == AccountNumber)
+			{
+				return account;
+			}
+		throw new InvalidAccountNumberException();
+	}
+	
+	
+	public int Withdraw(int AccountNumber, int Amount)throws InsufficientBalanceException,InvalidAccountNumberException
+	{
+		Account account = searchaccount(AccountNumber);
+		
+		if ((account.getAmount()-Amount)>=0)
+		{
+			account.setAccountNumber(account.getAmount()-Amount);
+		return account.getAmount();
+		
+		}
+		throw new InsufficientBalanceException();
+	}
+
+}

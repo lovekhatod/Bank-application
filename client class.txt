@@ -1,0 +1,19 @@
+public class Client {
+
+	public static void main(String[] args) {
+		
+		IciciBank bank = new IciciBank();
+		
+		try {
+			System.out.println(bank.CreateAccount(101, 500));
+		} catch (InsufficientOpeneningBalanceException e) {
+			System.out.println("insufficient Opening Balance");
+				
+		}
+
+		try{System.out.println(bank.Withdraw(101,600));
+		} catch (InsufficientBalanceException b){System.out.println("Insufficient Balance Available");}
+		catch (InvalidAccountNumberException a){System.out.println("invalid Account number");}
+			
+		}
+	}
